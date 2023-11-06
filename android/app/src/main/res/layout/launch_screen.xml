@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0C0C0C">
+
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="407dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="27dp"
+      android:layout_marginTop="161dp"
+      android:layout_marginEnd="27dp"
+      android:layout_marginBottom="163dp"
+      android:gravity="center"
+      android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo" />
+  </LinearLayout>
+
+  <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginStart="0dp"
+      android:layout_marginEnd="0dp"
+      android:scaleType="fitXY"
+      android:src="@drawable/splash_background" />
+
+  <TextView
+      android:id="@+id/second"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_above="@+id/third"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginStart="0dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginBottom="3dp"
+      android:gravity="center_horizontal"
+      android:text="By continuing, you agree to our"
+      android:textAlignment="center"
+      android:textColor="#73FFFFFF" />
+
+  <TextView
+      android:id="@+id/third"
+      android:layout_width="412dp"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="-1dp"
+      android:layout_marginEnd="0dp"
+      android:layout_marginBottom="25dp"
+      android:gravity="center_horizontal"
+      android:text="Terms &amp; Conditions and Privacy Policy"
+      android:textAlignment="center"
+      android:textColor="#D9FFFFFF" />
+</RelativeLayout>
