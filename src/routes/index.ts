@@ -74,6 +74,7 @@ export type RootStackParamList = {
   WebViewModal: undefined;
   Chat: { sender: string; receiver: string; }
   GetAddress: undefined;
+  ChatList: undefined;
   History: { chain?: string; extrinsicHash?: string; transactionId?: string };
   Login: undefined;
   AddProvider: { slug: string };

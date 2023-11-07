@@ -28,7 +28,7 @@ import { toShort } from 'utils/index';
 import { useIsFocused } from "@react-navigation/native";
 
 import { CHAT_API_URL } from 'constants/index';
-
+import { decrypt } from 'utils/encryptAndDecrypt'
 
 const axiosInstance = axios.create({ baseURL: CHAT_API_URL });
 
@@ -144,7 +144,7 @@ export const ChatList = () => {
                             paddingLeft: 20,
                             borderRadius: 5,
                           }}
-                        >{user.chats[user.chats.length - 1].chat}</Text>
+                        >{decrypt(user.chats[user.chats.length - 1].chat)}</Text>
                       </View>
                     </View>
                     <View style={{ flex: 1, height: 1, backgroundColor: 'white' }} />

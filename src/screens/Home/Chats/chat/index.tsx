@@ -26,6 +26,7 @@ import axios from 'axios'
 import { toShort } from 'utils/index';
 import * as io from "socket.io-client";
 
+import { encrypt, decrypt } from 'utils/encryptAndDecrypt'
 import {
   CHAT_API_URL
 } from 'constants/index';
@@ -72,7 +73,7 @@ export const Chat = (
 
   const onSubheaderPressBack = useCallback(() => {
 
-    navigation.goBack();
+    navigation.navigate('ChatList')
 
   }, [navigation]);
   // Submit Chat
@@ -86,7 +87,7 @@ export const Chat = (
           {
             "sender": users.sender,
             "receiver": users.receiver,
-            chat: text
+            chat: encrypt(text)
           }
         ]
       }
@@ -138,7 +139,7 @@ export const Chat = (
                           padding: 12
                         }}
 
-                      >{chat.chat}</Text>
+                      >{decrypt(chat.chat)}</Text>
                     </View>
                   )
                 } else {
@@ -157,7 +158,7 @@ export const Chat = (
                         backgroundColor: "#FAFAFF05",
                         borderRadius: 5,
                         padding: 12
-                      }} >{chat.chat}</Text>
+                      }} >{decrypt(chat.chat)}</Text>
                     </View>
                   )
                 }
