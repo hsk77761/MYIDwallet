@@ -15,6 +15,7 @@ import { ScreenContainer } from 'components/ScreenContainer';
 import { Header } from 'components/Header';
 import { SubHeader } from 'components/SubHeader';
 import { useNavigation } from '@react-navigation/native';
+import { ActivityLoading } from 'components/ActivityLoading';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'routes/index';
 import { Button } from 'components/design-system-ui';
@@ -33,11 +34,28 @@ import {
 const socket = io.connect(CHAT_API_URL);
 const axiosInstance = axios.create({ baseURL: CHAT_API_URL });
 
+interface IChats {
+  sender: string;
+  receiver: string;
+  chat: string
+}
+interface IUsers {
+  user: string,
+  sender: string,
+  receiver: string,
+  chats: IChats[]
+}
+
+interface Props {
+  route: {
+    params: { sender: string, receiver: string },
+  }
+}
 
 export const Chat = (
   {
     route
-  }: any
+  }: Props
 ) => {
   const { sender, receiver } = route.params;
   const theme = useSubWalletTheme().swThemes;
@@ -47,7 +65,7 @@ export const Chat = (
 
   const [loading, setLoading] = useState(false);
 
-  const [chats, setChats] = useState<any>([])
+  const [chats, setChats] = useState<IChats[]>([])
   const [text, setText] = useState('');
 
   let users = {
@@ -56,17 +74,20 @@ export const Chat = (
     receiver: receiver
   }
   useEffect(() => {
-    axiosInstance.get(`/chats/${users.sender}/${users.receiver}`).then((response) => {
+    setLoading(true)
+    axiosInstance.get(`/chats/${users.sender}/${users.receiver}?${Date.now()}`).then((response) => {
       setChats(response.data.data.chats)
     }).catch((err) => {
       console.log("error", err);
+    }).finally(() => {
+      setLoading(false)
     });
 
   }, [])
 
   useEffect(() => {
-    socket.on(users.sender, (res: any) => {
-      setChats((chat: []) => [...chat, res.chats[0]]);
+    socket.on(users.sender, (res: IUsers) => {
+      setChats((chat: IChats[]) => [...chat, res.chats[0]]);
     });
 
   }, [])
@@ -85,8 +106,8 @@ export const Chat = (
         receiver: users.receiver,
         chats: [
           {
-            "sender": users.sender,
-            "receiver": users.receiver,
+            sender: users.sender,
+            receiver: users.receiver,
             chat: encrypt(text)
           }
         ]
@@ -105,7 +126,7 @@ export const Chat = (
 
           <View style={stylesheet.subheader}>
             <SubHeader
-              title={toShort(users.user)}
+              title={toShort(users.receiver)}
               onPressBack={onSubheaderPressBack}
               disabled={loading}
               titleTextAlign={'left'}
@@ -119,7 +140,8 @@ export const Chat = (
               onContentSizeChange={() => scrollViewRef.current?.scrollToEnd({ animated: true })}
               contentContainerStyle={stylesheet.scrollViewContentContainer}
               keyboardShouldPersistTaps={'handled'}>
-              {chats && chats.map((chat: any, i: number) => {
+              {loading && <ActivityLoading />}
+              {chats && chats.map((chat: IChats, i: number) => {
                 if (chat.sender === users.sender) {
                   return (
                     <View
