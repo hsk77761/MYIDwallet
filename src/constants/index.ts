@@ -9,7 +9,7 @@ type DeviceInfo = {
   width: number;
   height: number;
 };
-export const CHAT_API_URL = 'http://localhost:3000';
+export const CHAT_API_URL = 'https://chatapi.myidcommunity.online';
 export const SECRET_ENCRYPTION_CODE = 'SECRET_ENCRYPTION_CODE';
 export const WIKI_URL = 'https://docs.subwallet.app/';
 export const PRIVACY_AND_POLICY_URL = 'https://docs.subwallet.app/privacy-and-security/privacy-policy';

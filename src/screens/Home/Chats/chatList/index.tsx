@@ -68,7 +68,7 @@ export const ChatList = () => {
         getInitialData(false)
       }
     });
-  }, [])
+  }, [currentAccount?.address])
 
   const getInitialData = async (loading: boolean) => {
     setLoading(loading)
