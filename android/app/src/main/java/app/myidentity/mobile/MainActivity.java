@@ -1,4 +1,4 @@
-package app.subwallet.mobile;
+package app.myidentity.mobile;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "SubWalletMobile";
+    return "MyIdentity";
   }
 
   /**

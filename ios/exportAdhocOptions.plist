@@ -10,7 +10,7 @@
     <false/>
     <key>provisioningProfiles</key>
     <dict>
-        <key>app.subwallet.mobile</key>
+        <key>app.myidentity.mobile</key>
         <string>Ad Hoc Distribution</string>
     </dict>
 </dict>

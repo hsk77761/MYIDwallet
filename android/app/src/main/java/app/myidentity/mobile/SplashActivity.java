@@ -1,4 +1,4 @@
-package app.subwallet.mobile; // Change this to your package name.
+package app.myidentity.mobile; // Change this to your package name.
 
 import android.content.Intent;
 import android.os.Bundle;

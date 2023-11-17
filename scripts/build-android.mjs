@@ -28,7 +28,7 @@ async function runBuildAndroid() {
 
 async function runUploadAndroid() {
   const packageInfo = getPackageInfo('../package.json');
-  const downloadLink = await uploadBuild('./app/build/outputs/apk/release/app-release.apk', `SubWalletMobile-build-${packageInfo.build}-${refName}-${buildDateString}.apk`);
+  const downloadLink = await uploadBuild('./app/build/outputs/apk/release/app-release.apk', `Myidentity-build-${packageInfo.build}-${refName}-${buildDateString}.apk`);
   return discordHook.send(`:robot: Android build (${refName}): ${downloadLink}`);
 }
 

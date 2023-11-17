@@ -79,12 +79,12 @@ if (process.argv.indexOf('--android') > -1) {
   console.log('Build android')
   await notify('Start build android')
   await runBuildAndroid()
-  await uploadBuild(path.resolve(process.cwd(), 'android/app/build/outputs/apk/universal.apk'), `subwallet-mobile-v${packageInfo.version}-b${packageInfo.build}-${timeLabel}.apk`)
+  await uploadBuild(path.resolve(process.cwd(), 'android/app/build/outputs/apk/universal.apk'), `myidentity-mobile-v${packageInfo.version}-b${packageInfo.build}-${timeLabel}.apk`)
   await notify('Finish build android')
 
   if (process.argv.indexOf('--release') > -1) {
     await notify('Start build upload android bundle')
-    await uploadBuild(path.resolve(process.cwd(), 'android/app/build/outputs/bundle/release/app-release.aab '), `subwallet-mobile-v${packageInfo.version}-b${packageInfo.build}-${timeLabel}.aab`)
+    await uploadBuild(path.resolve(process.cwd(), 'android/app/build/outputs/bundle/release/app-release.aab '), `myidentity-mobile-v${packageInfo.version}-b${packageInfo.build}-${timeLabel}.aab`)
     await notify('Start build upload android bundle')
   }
 }
@@ -93,7 +93,7 @@ if (process.argv.indexOf('--ios') > -1) {
   console.log('Build ios')
   await notify('Start build iOS')
   await runBuildIOS()
-  await uploadBuild(path.resolve(process.cwd(), 'ios/dist/SubWallet.xcarchive'), `subwallet-mobile-v${packageInfo.version}-b${packageInfo.build}-${timeLabel}.xcarchive`)
+  await uploadBuild(path.resolve(process.cwd(), 'ios/dist/MyIdentity.xcarchive'), `myidentity-mobile-v${packageInfo.version}-b${packageInfo.build}-${timeLabel}.xcarchive`)
   await notify('Finish build iOS')
 
   if (process.argv.indexOf('--release') > -1) {

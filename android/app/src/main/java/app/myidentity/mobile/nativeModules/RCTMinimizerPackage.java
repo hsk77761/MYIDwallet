@@ -1,4 +1,4 @@
-package app.subwallet.mobile.nativeModules;
+package app.myidentity.mobile.nativeModules;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

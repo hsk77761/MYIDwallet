@@ -88,9 +88,9 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
-    namespace "app.subwallet.mobile"
+    namespace "app.myidentity.mobile"
     defaultConfig {
-        applicationId "app.subwallet.mobile"
+        applicationId "app.myidentity.mobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 209

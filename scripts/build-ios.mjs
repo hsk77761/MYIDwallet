@@ -23,16 +23,16 @@ async function runCleanIOS() {
 }
 
 async function runBuildIOS() {
-  return execSync('xcodebuild -workspace ./SubWalletMobile.xcworkspace -scheme SubWalletMobile -sdk iphoneos -configuration Release -quiet -archivePath $PWD/dist/SubWallet.xcarchive clean archive', 'Build Archive');
+  return execSync('xcodebuild -workspace ./MyIdentity.xcworkspace -scheme MyIdentity -sdk iphoneos -configuration Release -quiet -archivePath $PWD/dist/MyIdentity.xcarchive clean archive', 'Build Archive');
 }
 
 async function runExportIOS() {
-  return execSync('xcodebuild -exportArchive -archivePath $PWD/dist/SubWallet.xcarchive -exportOptionsPlist exportAdhocOptions.plist -exportPath $PWD/dist', 'Export ipa');
+  return execSync('xcodebuild -exportArchive -archivePath $PWD/dist/MyIdentity.xcarchive -exportOptionsPlist exportAdhocOptions.plist -exportPath $PWD/dist', 'Export ipa');
 }
 
 async function runUploadIOS() {
   const packageInfo = getPackageInfo('../package.json');
-  const downloadLink = await uploadBuild('./dist/SubWalletMobile.ipa', `SubWalletMobile-build-${packageInfo.build}-${refName}-${buildDateString}.ipa`);
+  const downloadLink = await uploadBuild('./dist/MyIdentity.ipa', `MyIdentity-build-${packageInfo.build}-${refName}-${buildDateString}.ipa`);
   return discordHook.send(`:apple: IOS build (${refName}): ${downloadLink}`);
 }
 
