@@ -15,7 +15,7 @@ import {
 import { EmptyList } from 'components/EmptyList';
 import i18n from 'utils/i18n/i18n';
 
-interface Props {}
+interface Props { }
 
 let chainKeys: Array<string> | undefined;
 
@@ -159,6 +159,7 @@ export const NetworksSetting = ({}: Props) => {
     return (
       <NetworkAndTokenToggleItem
         isDisableSwitching={
+          item.slug ==='clarusDevelopment' ||
           item.slug === 'polkadot' || item.slug === 'kusama' || Object.keys(pendingChainMap).includes(item.slug)
         }
         key={`${item.slug}-${item.name}`}

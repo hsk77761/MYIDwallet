@@ -666,7 +666,7 @@ export function isNftTransferSupported(networkKey: string, networkJson: NetworkJ
 }
 
 export function isUrl(targetString: string) {
-  return targetString.startsWith('http:') || targetString.startsWith('https:') || targetString.startsWith('wss:');
+  return targetString.startsWith('http:') || targetString.startsWith('https:') || targetString.startsWith('wss:') || targetString.startsWith('ws:');
 }
 
 export const convertKeyTypes = (authTypes: AccountAuthType[]): KeypairType[] => {
