@@ -63,6 +63,8 @@ const getSettingsContent = (props: DrawerContentComponentProps) => {
   return <Settings {...props} />;
 };
 const MainScreen = () => {
+  const { currentAccount } = useSelector((state: RootState) => state.accountState);
+  const { show } = useToast();
   const Tab = createBottomTabNavigator<HomeStackParamList>();
   const insets = useSafeAreaInsets();
   const theme = useSubWalletTheme().swThemes;
@@ -125,6 +127,14 @@ const MainScreen = () => {
       <Tab.Screen
         name={'Chats'}
         component={ChatScreen}
+        listeners={{
+          tabPress: e => {
+            if (currentAccount?.address === "ALL") {
+              show("Please select account", { type: 'warning' });
+              e.preventDefault();
+            }
+          },
+        }}
         options={{
           tabBarLabel: i18n.tabName.chats,
           tabBarHideOnKeyboard: Platform.OS === 'android',
