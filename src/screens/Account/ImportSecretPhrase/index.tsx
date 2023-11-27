@@ -49,7 +49,10 @@ export const ImportSecretPhrase = () => {
 
   const [validating, setValidating] = useState(false);
   const [currentViewStep, setCurrentViewStep] = useState<number>(ViewStep.ENTER_SEED);
-  const [keyTypes, setKeyTypes] = useState<KeypairType[]>([SUBSTRATE_ACCOUNT_TYPE, EVM_ACCOUNT_TYPE]);
+  const [keyTypes] = useState<KeypairType[]>([
+    SUBSTRATE_ACCOUNT_TYPE,
+    // EVM_ACCOUNT_TYPE
+  ]);
 
   const _onImportSeed = (): void => {
     setBusy(true);
@@ -160,12 +163,12 @@ export const ImportSecretPhrase = () => {
             autoCapitalize="none"
           />
 
-          <SelectAccountType
+          {/* <SelectAccountType
             title={i18n.importAccount.selectAccountType}
             selectedItems={keyTypes}
             setSelectedItems={setKeyTypes}
             disabled={isBusy}
-          />
+          /> */}
         </ScrollView>
         <View style={styles.footer}>
           <Button

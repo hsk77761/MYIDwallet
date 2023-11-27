@@ -1,5 +1,5 @@
 import DeriveAccountModal from 'components/common/Modal/DeriveAccountModal';
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useMemo, useRef ,useState} from 'react';
 import {
   DeviceTabletCamera,
   Eye,
@@ -11,7 +11,7 @@ import {
   Swatches,
   Wallet,
 } from 'phosphor-react-native';
-import { EVM_ACCOUNT_TYPE } from 'constants/index';
+import { EVM_ACCOUNT_TYPE,SUBSTRATE_ACCOUNT_TYPE } from 'constants/index';
 import i18n from 'utils/i18n/i18n';
 import { useSelector } from 'react-redux';
 import { RootState } from 'stores/index';
@@ -40,7 +40,10 @@ export const AccountCreationArea = ({
 }: Props) => {
   const navigation = useNavigation<RootNavigationProps>();
   const { accounts, hasMasterPassword } = useSelector((state: RootState) => state.accountState);
-  const selectTypeRef = useRef<ModalRef>();
+  // const selectTypeRef = useRef<ModalRef>();
+  const [keyTypes] = useState<KeypairType[]>([
+    SUBSTRATE_ACCOUNT_TYPE
+  ]);
   const deriveAccModalRef = useRef<ModalRef>();
   const goHome = useGoHome();
   const importAccountActions = [
@@ -118,20 +121,20 @@ export const AccountCreationArea = ({
     }
   }, []);
 
-  const onSelectAccountTypes = useCallback(
-    (keyTypes: KeypairType[]) => {
-      createAccountRef && createAccountRef.current?.onCloseModal();
-      selectTypeRef && selectTypeRef.current?.onCloseModal();
-      setTimeout(() => {
-        if (hasMasterPassword) {
-          navigation.navigate('CreateAccount', { keyTypes: keyTypes });
-        } else {
-          navigation.navigate('CreatePassword', { pathName: 'CreateAccount', state: keyTypes });
-        }
-      }, 300);
-    },
-    [createAccountRef, hasMasterPassword, navigation],
-  );
+  // const onSelectAccountTypes = useCallback(
+  //   (keyTypes: KeypairType[]) => {
+  //     createAccountRef && createAccountRef.current?.onCloseModal();
+  //     selectTypeRef && selectTypeRef.current?.onCloseModal();
+  //     setTimeout(() => {
+  //       if (hasMasterPassword) {
+  //         navigation.navigate('CreateAccount', { keyTypes: keyTypes });
+  //       } else {
+  //         navigation.navigate('CreatePassword', { pathName: 'CreateAccount', state: keyTypes });
+  //       }
+  //     }, 300);
+  //   },
+  //   [createAccountRef, hasMasterPassword, navigation],
+  // );
 
   const createAccountAction = useMemo(() => {
     return [
@@ -154,7 +157,16 @@ export const AccountCreationArea = ({
   const createAccountFunc = (item: ActionItemType) => {
     if (item.key === 'createAcc') {
       if (allowToShowSelectType) {
-        selectTypeRef && selectTypeRef.current?.onOpenModal();
+        createAccountRef && createAccountRef.current?.onCloseModal();
+        // selectTypeRef && selectTypeRef.current?.onCloseModal();
+        setTimeout(() => {
+          if (hasMasterPassword) {
+            navigation.navigate('CreateAccount', { keyTypes: keyTypes });
+          } else {
+            navigation.navigate('CreatePassword', { pathName: 'CreateAccount', state: keyTypes });
+          }
+        }, 300);
+        // selectTypeRef && selectTypeRef.current?.onOpenModal();
       } else {
         createAccountRef?.current?.onCloseModal();
         setTimeout(() => {
@@ -230,7 +242,7 @@ export const AccountCreationArea = ({
         <DeriveAccountModal deriveAccModalRef={deriveAccModalRef} goHome={goHome} navigation={navigation} />
       </AccountActionSelectModal>
 
-      <SelectAccountTypeModal selectTypeRef={selectTypeRef} onConfirm={onSelectAccountTypes} />
+      {/* <SelectAccountTypeModal selectTypeRef={selectTypeRef} onConfirm={onSelectAccountTypes} /> */}
 
       <AccountActionSelectModal
         accActionRef={importAccountRef}

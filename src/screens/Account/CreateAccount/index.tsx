@@ -9,7 +9,7 @@ import i18n from 'utils/i18n/i18n';
 import { backToHome } from 'utils/navigation';
 import useGoHome from 'hooks/screen/useGoHome';
 import useHandlerHardwareBackPress from 'hooks/screen/useHandlerHardwareBackPress';
-import { EVM_ACCOUNT_TYPE, SUBSTRATE_ACCOUNT_TYPE } from 'constants/index';
+import {  SUBSTRATE_ACCOUNT_TYPE } from 'constants/index';
 import useGetDefaultAccountName from 'hooks/useGetDefaultAccountName';
 
 const ViewStep = {
@@ -25,7 +25,7 @@ function getHeaderTitle(viewStep: number) {
   }
 }
 
-const defaultKeyTypes = [SUBSTRATE_ACCOUNT_TYPE, EVM_ACCOUNT_TYPE];
+const defaultKeyTypes = [SUBSTRATE_ACCOUNT_TYPE];
 
 export const CreateAccount = ({ route: { params } }: CreateAccountProps) => {
   const [currentViewStep, setCurrentViewStep] = useState<number>(ViewStep.INIT_SP);
