@@ -19,7 +19,8 @@ export type HomeStackParamList = {
   Tokens: NavigatorScreenParams<CryptoStackParamList>;
   NFTs: NavigatorScreenParams<NFTStackParamList>;
   Crowdloans: undefined;
-  Chats:undefined;
+  Chats: undefined;
+  MyIdCommunity: undefined;
   Staking: NavigatorScreenParams<StakingScreenStackParamList> | undefined;
   Browser: NavigatorScreenParams<BrowserHomeProps>;
 };

@@ -239,6 +239,7 @@ export const en = {
     crowdloans: 'Crowdloans',
     staking: 'Staking',
     browser: 'Browser',
+    myid: 'MYID',
   },
   welcomeScreen: {
     welcomeBackTitle: 'Welcome back!',

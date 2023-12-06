@@ -237,6 +237,7 @@ export const zh = {
     crowdloans: '众贷',
     staking: '质押',
     browser: '浏览器',
+    myid: 'MYID',
   },
   welcomeScreen: {
     welcomeBackTitle: '欢迎回来！',

@@ -239,6 +239,7 @@ export const vi = {
     crowdloans: 'Crowdloan',
     staking: 'Staking',
     browser: 'Trình duyệt',
+    myid: 'MYID',
   },
   welcomeScreen: {
     welcomeBackTitle: 'Chào mừng bạn trở lại!',
